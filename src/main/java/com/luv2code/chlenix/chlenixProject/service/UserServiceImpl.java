@@ -11,6 +11,7 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -19,12 +20,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(UserDto userDto) {
-        User user = new User(userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()), userDto.getRole(), userDto.getFullname());
+        User user = new User(userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()) , userDto.getRole(), userDto.getFullname());
         return userRepository.save(user);
     }
 
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
+
     }
+
+    @Override
+    public void deleteById(int theId) {
+        userRepository.deleteById((long) theId);
+    }
+
+
 }
