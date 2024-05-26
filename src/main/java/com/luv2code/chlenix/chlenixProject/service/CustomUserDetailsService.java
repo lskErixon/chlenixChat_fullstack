@@ -1,5 +1,6 @@
 package com.luv2code.chlenix.chlenixProject.service;
 
+
 import com.luv2code.chlenix.chlenixProject.model.User;
 import com.luv2code.chlenix.chlenixProject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             user.setRole("USER");
         }
         return new CustomUserDetails(user);
+
     }
+
 }

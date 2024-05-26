@@ -1,6 +1,7 @@
 package com.luv2code.chlenix.chlenixProject.dto;
 
 public class UserDto {
+
     private String email;
     private String password;
     private String role;
@@ -45,4 +46,10 @@ public class UserDto {
     public void setFullname(String fullname) {
         this.fullname = fullname;
     }
+
+
+
+
+
+
 }

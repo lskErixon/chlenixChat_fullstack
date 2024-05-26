@@ -15,7 +15,6 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 @Slf4j
 public class WebSocketEventListener {
     private final SimpMessageSendingOperations messageTemplate;
-
     @EventListener
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent sessionDisconnectEvent){
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(sessionDisconnectEvent.getMessage());
@@ -28,5 +27,6 @@ public class WebSocketEventListener {
                     .build();
             messageTemplate.convertAndSend("/topic/public", chatMessage);
         }
+
     }
 }

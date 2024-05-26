@@ -1,17 +1,17 @@
 package com.luv2code.chlenix.chlenixProject.controller;
 
 import com.luv2code.chlenix.chlenixProject.dto.UserDto;
+import com.luv2code.chlenix.chlenixProject.model.User;
 import com.luv2code.chlenix.chlenixProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -41,18 +41,22 @@ public class UserController {
     }
 
 
-    @GetMapping("/list-users")
+    @GetMapping("/chat")
     public String userPage (Model model, Principal principal) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
         model.addAttribute("user", userDetails);
-        model.addAttribute("listUsers",userService.getAllUsers());
-        return "list-users";
+        return "/chat";
     }
 
     @GetMapping("admin-page")
     public String adminPage (Model model, Principal principal) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
-        model.addAttribute("user", userDetails);
+        List<User> theUser = userService.getAllUsers();
+        model.addAttribute("user", theUser);
         return "admin-page";
+    }
+    @GetMapping("/delete")
+    public String deleteUser(@RequestParam("userId") int theId){
+        userService.deleteById(theId);
+        return "redirect:/admin-page";
     }
 }

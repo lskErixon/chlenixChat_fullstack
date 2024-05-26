@@ -55,4 +55,5 @@ public class SecurityConfig {
     public void configure (AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
     }
+
 }
