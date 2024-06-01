@@ -35,7 +35,8 @@ public class SecurityConfig {
         http.csrf(c -> c.disable())
 
                 .authorizeHttpRequests(request -> request.requestMatchers("/admin-page")
-                        .hasAuthority("ADMIN").requestMatchers("/list-users").hasAuthority("USER")
+                        .hasAuthority("ADMIN")
+                        .requestMatchers("/chat").hasAuthority("USER")
                         .requestMatchers("/registration").permitAll()
                         .anyRequest().authenticated())
 
@@ -54,5 +55,4 @@ public class SecurityConfig {
     public void configure (AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
     }
-
 }

@@ -21,6 +21,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("user not found");
         }
+        if (user.getRole() == null){
+            user.setRole("USER");
+        }
         return new CustomUserDetails(user);
+
     }
+
 }
