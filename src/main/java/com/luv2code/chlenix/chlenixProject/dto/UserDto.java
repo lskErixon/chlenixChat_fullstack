@@ -46,10 +46,4 @@ public class UserDto {
     public void setFullname(String fullname) {
         this.fullname = fullname;
     }
-
-
-
-
-
-
 }

@@ -15,6 +15,13 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 @Slf4j
 public class WebSocketEventListener {
     private final SimpMessageSendingOperations messageTemplate;
+
+    /**
+     * This method listens for WebSocket disconnection events,
+     * logs the disconnection, and broadcasts a message to all subscribers
+     * of a public topic indicating that a user has left.
+     * @param sessionDisconnectEvent
+     */
     @EventListener
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent sessionDisconnectEvent){
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(sessionDisconnectEvent.getMessage());

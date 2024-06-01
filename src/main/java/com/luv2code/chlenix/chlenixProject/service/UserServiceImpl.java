@@ -34,6 +34,4 @@ public class UserServiceImpl implements UserService {
     public void deleteById(int theId) {
         userRepository.deleteById((long) theId);
     }
-
-
 }

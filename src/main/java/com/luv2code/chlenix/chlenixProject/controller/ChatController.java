@@ -17,12 +17,22 @@ public class ChatController {
     @Autowired
     UserDetailsService userDetailsService;
 
+    /**
+     * Chat controller(create offer to url into chat)
+     * @param chatMessage
+     * @return
+     */
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage){
         return chatMessage;
     }
 
+    /**
+     * Chat controller(create offer to url into chat)
+     * @param chatMessage
+     * @return
+     */
     @MessageMapping("/chat.addUser")
     @SendTo("/topic/public")
     public ChatMessage addUser(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor, Principal principal){
