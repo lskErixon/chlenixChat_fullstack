@@ -24,11 +24,22 @@ public class SecurityConfig {
     @Autowired
     CustomUserDetailsService customUserDetailsService;
 
+    /**
+     * A Spring object that decodes a password
+     * @return
+     */
     @Bean
     public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * A FilterChain is an object provided by the servlet container
+     * to the developer giving a view into the invocation chain of a filtered request for a resource.
+     * @param http
+     * @return
+     * @throws Exception
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 
@@ -51,6 +62,11 @@ public class SecurityConfig {
 
     }
 
+    /**
+     * Simple decoder for password user in database
+     * @param auth
+     * @throws Exception
+     */
     @Autowired
     public void configure (AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
